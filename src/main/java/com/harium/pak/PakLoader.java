@@ -14,7 +14,7 @@ public class PakLoader {
 
   public PakFile load(String path) throws IOException {
 
-    PakFile pakFile = new PakFile();
+    PakFile pakFile = new PakFile(path);
 
     RandomAccessFile raf = new RandomAccessFile(path, "r");
 
@@ -43,16 +43,13 @@ public class PakLoader {
     raf.read(headerEntry);
 
     parseEntryHeader(entry, headerEntry);
-    System.out.println(entry.name);
-    System.out.println(entry.size);
-    System.out.println(entry.offset);
     return entry;
   }
 
   private void parseEntryHeader(PakFileEntry entry, byte[] headerEntry) {
     StringBuilder name = new StringBuilder();
     for (int i = 0; i < 56; i++) {
-      if(headerEntry[i]==0) {
+      if (headerEntry[i] == 0) {
         break;
       }
       char ch = (char) headerEntry[i];
