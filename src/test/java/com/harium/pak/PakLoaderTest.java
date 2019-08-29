@@ -1,3 +1,5 @@
+package com.harium.pak;
+
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
