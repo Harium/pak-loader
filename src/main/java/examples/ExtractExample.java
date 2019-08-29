@@ -11,12 +11,15 @@ import java.io.OutputStream;
 
 public class ExtractExample {
 
+  // Folder where the source file is located
   private static final String INPUT_FOLDER = "src/test/resources/";
+
+  // Folder where files will be placed after extracting TARGET_FOLDER
   private static final String TARGET_FOLDER = "src/main/resources/housp/";
 
   public static void main(String[] args) throws IOException {
     PakLoader loader = new PakLoader();
-    PakFile file = loader.load(INPUT_FOLDER + "housp-pak0.pak");
+    PakFile file = loader.load(INPUT_FOLDER + "house-spider.pak");
 
     extractAllFiles(file);
   }

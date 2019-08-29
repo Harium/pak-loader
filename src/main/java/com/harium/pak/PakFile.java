@@ -36,6 +36,10 @@ public class PakFile {
     return size;
   }
 
+  public int getOffset() {
+    return offset;
+  }
+
   void addFile(PakFileEntry entry) {
     fileEntries.put(entry.name, entry);
   }
@@ -60,5 +64,4 @@ public class PakFile {
     randomAccessFile.read(buffer);
     return new ByteArrayInputStream(buffer);
   }
-
 }

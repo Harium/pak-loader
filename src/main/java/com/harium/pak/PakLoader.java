@@ -1,5 +1,7 @@
 package com.harium.pak;
 
+import static com.harium.pak.ByteHandler.readIntBigEndian;
+
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
@@ -8,9 +10,10 @@ import java.io.RandomAccessFile;
  */
 public class PakLoader {
 
-  private static final int HEADER_SIZE = 12;
-  private static final int HEADER_ENTRY = 56 + 8;
-  private static final byte[] HEADER_PACK = {80, 65, 67, 75};//'PACK'
+  static final int HEADER_SIZE = 12;
+  static final int HEADER_ENTRY = 56 + 8;
+  static final byte[] HEADER_PACK = {80, 65, 67, 75};//'PACK'
+  static final int NAME_SIZE = 56;
 
   public PakFile load(String path) throws IOException {
 
@@ -48,7 +51,7 @@ public class PakLoader {
 
   private void parseEntryHeader(PakFileEntry entry, byte[] headerEntry) {
     StringBuilder name = new StringBuilder();
-    for (int i = 0; i < 56; i++) {
+    for (int i = 0; i < NAME_SIZE; i++) {
       if (headerEntry[i] == 0) {
         break;
       }
@@ -56,8 +59,8 @@ public class PakLoader {
       name.append(ch);
     }
     entry.name = name.toString();
-    entry.offset = readInt(headerEntry, headerEntry.length - 8);
-    entry.size = readInt(headerEntry, headerEntry.length - 4);
+    entry.offset = readIntBigEndian(headerEntry, headerEntry.length - 8);
+    entry.size = readIntBigEndian(headerEntry, headerEntry.length - 4);
   }
 
   private void readHeader(PakFile pakFile, RandomAccessFile fis) throws IOException {
@@ -73,8 +76,8 @@ public class PakLoader {
     if (!check(HEADER_PACK, header)) {
       return false;
     }
-    pakFile.offset = readInt(header, 4);
-    pakFile.size = readInt(header, 8);
+    pakFile.offset = readIntBigEndian(header, 4);
+    pakFile.size = readIntBigEndian(header, 8);
     return true;
   }
 
@@ -86,13 +89,6 @@ public class PakLoader {
       return false;
     }
     return true;
-  }
-
-  private int readInt(byte[] array, int offset) {
-    return array[3 + offset] << 24
-        | (array[2 + offset] & 0xff) << 16
-        | (array[1 + offset] & 0xff) << 8
-        | (array[0 + offset] & 0xff);
   }
 
 }
