@@ -9,7 +9,7 @@ public class CreateExample {
 
   public static void main(String[] args) throws IOException {
     PakWriter writer = new PakWriter();
-    writer.save(TARGET_FOLDER, TARGET_FOLDER + "../house-spider.pak");
+    writer.write(TARGET_FOLDER, TARGET_FOLDER + "../house-spider.pak");
   }
 
 }

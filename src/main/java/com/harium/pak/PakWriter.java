@@ -1,6 +1,6 @@
 package com.harium.pak;
 
-import static com.harium.pak.ByteHandler.intToByteBigEndian;
+import static com.harium.loader.ByteToInt.intToByteBigEndian;
 import static com.harium.pak.PakLoader.HEADER_PACK;
 import static com.harium.pak.PakLoader.HEADER_SIZE;
 import static com.harium.pak.PakLoader.NAME_SIZE;
@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class PakWriter {
 
-  public void save(String path, String output) throws IOException {
+  public void write(String path, String output) throws IOException {
     File folder = new File(path);
     if (folder.isDirectory() && folder.exists()) {
       FileOutputStream fos = new FileOutputStream(output);
@@ -90,10 +90,6 @@ public class PakWriter {
     byte[] nameArray = nameArray(fileName);
 
     int size = (int) file.length();
-    /*System.out.println(
-        "Found: " + fileName);
-    System.out.println(size);
-    System.out.println(offset);*/
     fos.write(nameArray);
     fos.write(intToByteBigEndian(offset));
     fos.write(intToByteBigEndian(size));

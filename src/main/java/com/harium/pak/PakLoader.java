@@ -1,6 +1,6 @@
 package com.harium.pak;
 
-import static com.harium.pak.ByteHandler.readIntBigEndian;
+import static com.harium.loader.ByteToInt.readIntBigEndian;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -12,7 +12,8 @@ public class PakLoader {
 
   static final int HEADER_SIZE = 12;
   static final int HEADER_ENTRY = 56 + 8;
-  static final byte[] HEADER_PACK = {80, 65, 67, 75};//'PACK'
+  //'PACK'
+  static final byte[] HEADER_PACK = {80, 65, 67, 75};
   static final int NAME_SIZE = 56;
 
   public PakFile load(String path) throws IOException {

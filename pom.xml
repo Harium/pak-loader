@@ -11,9 +11,9 @@
   <description>A pak loader made in pure Java</description>
   <url>http://github.com/harium/pak-loader</url>
   <scm>
-    <connection>scm:git:git://github.com/harium/keel.git</connection>
-    <developerConnection>scm:git:ssh://github.com:harium/keel.git</developerConnection>
-    <url>http://github.com/harium/keel/tree/master</url>
+    <connection>scm:git:git://github.com/harium/pak-loader.git</connection>
+    <developerConnection>scm:git:ssh://github.com:harium/pak-loader.git</developerConnection>
+    <url>http://github.com/harium/pak-loader/tree/master</url>
   </scm>
   <licenses>
     <license>
@@ -22,6 +22,11 @@
     </license>
   </licenses>
   <dependencies>
+    <dependency>
+      <groupId>com.harium.loader</groupId>
+      <artifactId>core</artifactId>
+      <version>0.1.0</version>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
