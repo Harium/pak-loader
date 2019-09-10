@@ -1,6 +1,7 @@
 package com.harium.pak;
 
-import static com.harium.loader.ByteToInt.readIntBigEndian;
+import static com.harium.loader.ByteUtils.compare;
+import static com.harium.loader.ByteUtils.readIntLittleEndian;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -60,8 +61,8 @@ public class PakLoader {
       name.append(ch);
     }
     entry.name = name.toString();
-    entry.offset = readIntBigEndian(headerEntry, headerEntry.length - 8);
-    entry.size = readIntBigEndian(headerEntry, headerEntry.length - 4);
+    entry.offset = readIntLittleEndian(headerEntry, headerEntry.length - 8);
+    entry.size = readIntLittleEndian(headerEntry, headerEntry.length - 4);
   }
 
   private void readHeader(PakFile pakFile, RandomAccessFile fis) throws IOException {
@@ -74,21 +75,11 @@ public class PakLoader {
   }
 
   private boolean parseHeader(PakFile pakFile, byte[] header) {
-    if (!check(HEADER_PACK, header)) {
+    if (!compare(HEADER_PACK, header)) {
       return false;
     }
-    pakFile.offset = readIntBigEndian(header, 4);
-    pakFile.size = readIntBigEndian(header, 8);
-    return true;
-  }
-
-  private boolean check(byte[] bytes, byte[] header) {
-    for (int i = 0; i < bytes.length; i++) {
-      if (bytes[i] == header[i]) {
-        continue;
-      }
-      return false;
-    }
+    pakFile.offset = readIntLittleEndian(header, 4);
+    pakFile.size = readIntLittleEndian(header, 8);
     return true;
   }
 

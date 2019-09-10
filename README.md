@@ -5,8 +5,8 @@ Pak loader made in pure Java. It can load and write .pak files.
 ```
 <dependency>
     <groupId>com.harium.loader</groupId>
-    <artifactId>pack</artifactId>
-    <version>1.0.0</version>
+    <artifactId>pak</artifactId>
+    <version>1.0.1</version>
 </dependency>
 ```
 

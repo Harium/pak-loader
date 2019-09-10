@@ -1,6 +1,7 @@
 package com.harium.pak;
 
-import static com.harium.loader.ByteToInt.intToByteBigEndian;
+import static com.harium.loader.ByteUtils.intToByteBigEndian;
+import static com.harium.loader.ByteUtils.intToByteLittleEndian;
 import static com.harium.pak.PakLoader.HEADER_PACK;
 import static com.harium.pak.PakLoader.HEADER_SIZE;
 import static com.harium.pak.PakLoader.NAME_SIZE;
@@ -78,10 +79,10 @@ public class PakWriter {
       total += file.length();
     }
 
-    fos.write(intToByteBigEndian(total));
+    fos.write(intToByteLittleEndian(total));
 
     int size = files.size() * 64;
-    fos.write(intToByteBigEndian(size));
+    fos.write(intToByteLittleEndian(size));
   }
 
   private int writeFileEntryHeader(FileOutputStream fos, int offset, File folder, File file)

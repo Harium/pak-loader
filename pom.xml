@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.harium.loader</groupId>
   <artifactId>pak</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <packaging>jar</packaging>
   <name>Pak Loader</name>
   <description>A pak loader made in pure Java</description>
@@ -25,7 +25,7 @@
     <dependency>
       <groupId>com.harium.loader</groupId>
       <artifactId>core</artifactId>
-      <version>0.1.0</version>
+      <version>0.2.0</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
